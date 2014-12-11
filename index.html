@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title>坐标的位置</title>
+		<meta charset="UTF-8" />
+		<style type="text/css">
+			body{margin:0; padding:0;}
+			.content{border:1px solid #CCC; height:800px; width:600px;position:relative; float:left}
+			.mouse{position:absolute; top:400px;}
+			.menu{display:none;position:absolute;width: 100px;border: 1px solid #CCC;}
+			.menu a{color:blue;}
+		</style>
+	</head>
+	<body>
+		<div id="content" class="content">
+			
+			<span id="mouse" class="mouse">client: 0,0</span>
+		</div>
+		<div style="float:left;">
+			
+		</div>
+		<div id="menu" class="menu">
+			<ul>
+				<li><a href="javascript:;">百度</a></li>
+				<li><a href="javascript:;">百度</a></li>
+				<li><a href="javascript:;">百度</a></li>
+				<li><a href="javascript:;">百度</a></li>
+			</ul>
+		</div>
+		<div style="clear:both;"></div>
+	</body>
+</html>
+<!-- <script type="text/javascript" src="jquery-1.8.0.js"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#content").bind("mousemove", function(event){
+		event = event || window.event;
+        $("#mouse").html(
+							'client: '+event.clientX+","+event.clientY+"<br/>"+
+							'page: '+event.pageX+","+event.pageY+"<br/>"+
+							'screen: '+event.screenX+","+event.screenY+"<br/>"
+						);
+		
+	});
+		
+	//右键菜单
+	$("body").bind("contextmenu", function(event){
+		event = event || window.event;
+
+		// 取消默认的右键行为
+		if (event.preventDefault) {
+	        event.preventDefault();
+	    }else{ 
+	        event.returnValue = false;
+	    }
+		
+		var x = event.pageX;
+		var y = event.pageY;
+		
+		$("#menu").css({"display":"block", "top":y, "left":x});
+	})
+	//单击左键使菜单消失
+	$("body").bind("click", function(event){		
+		$("#menu").css("display","none");
+	});
+	//关闭页面或者重新加载页面时执行的弹框提示，弹框内容为msg
+	$(window).bind("beforeunload", function(event){
+		event = event || window.event;
+        var msg = "leave";
+		event.returnValue = msg;
+		return msg;
+	});
+})
+</script>
