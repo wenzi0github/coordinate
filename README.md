@@ -6,6 +6,7 @@ screen, page与client坐标的区别，鼠标右键的使用，窗口卸载时�
 clientX与clientY是相对于浏览器的可视窗口，即能展示内容的窗口的左上角为参考点；
 pageX与pageY是相对于我们的文档的左上角为参考点的，即代码中document的左上角，产生滚动条后技能看到效果；
 screenX与screenY是以我们显示器的的左上角为参考点。
+![image]https://github.com/wenzi0github/coordinate/blob/master/images/1.png
 
 通常我们鼠标右键时产生的是浏览器默认的右键菜单，我们可以通过 contextmenu 来书写我们自己的右键菜单；
 当然，首先我们应该取消右键的默认行为，然后开始我们的菜单。
